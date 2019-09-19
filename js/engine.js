@@ -13,21 +13,31 @@
  * writing app.js a little simpler to work with.
  */
 
-var Engine = (function(global) {
+const Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas element's height/width and add it to the DOM.
      */
-    var doc = global.document,
+    let doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
         id;
 
+        const modalWinner = document.querySelector('.winner');
+        const replay = document.querySelector('#replay');
+
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
+
+    replay.addEventListener('click', function() {
+      modalWinner.classList.toggle('hide');
+      player.reset();
+      player.isWinner = false;
+      id = win.requestAnimationFrame(main);
+    });
 
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
@@ -58,6 +68,7 @@ var Engine = (function(global) {
          */
       if (player.isWinner === true) {
         win.cancelAnimationFrame(id);
+        modalWinner.classList.toggle('hide');
       } else {
         id = win.requestAnimationFrame(main);
       }
