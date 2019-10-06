@@ -1,4 +1,4 @@
-// Score panel variables
+// Score panel/Animation variables
 let lives = 3,
     livesPanel = document.querySelector('.lives'),
     score = 0,
@@ -6,7 +6,8 @@ let lives = 3,
     highScore = 0,
     highPanel = document.querySelector('.high-score'),
     scoreFinal = document.querySelector('.score-final'),
-    highFinal = document.querySelector('.high-final');
+    highFinal = document.querySelector('.high-final'),
+    game = document.querySelector('.game');
 
 
 // Enemies our player must avoid
@@ -41,7 +42,7 @@ Enemy.prototype.update = function(dt) {
     } else {
       // Reset position and randomize speed for next cross
       this.x = this.startMove;
-      this.speed = 120 + Math.floor(Math.random() * 500);
+      this.speed = 60 + Math.floor(Math.random() * 200);
     }
 };
 
@@ -74,6 +75,8 @@ class Hero {
                   if (this.y === enemy.y && (enemy.x + enemy.hor/1.8 > this.x && enemy.x < this.x + this.hor/1.8)) {
                     lives--;
                     livesPanel.innerHTML = lives;
+                    game.classList.add('dead');
+                    setTimeout(() => game.classList.remove('dead'), 500)
                     this.reset();
                   }
                 }
@@ -85,6 +88,8 @@ class Hero {
                     highScore = score;
                     highPanel.innerHTML = highScore;
                   }
+                  game.classList.add('win');
+                  setTimeout(() => game.classList.remove('win'), 500)
                   this.reset();
                 }
             }
@@ -136,11 +141,11 @@ class Hero {
 
 // New hero object
 const player = new Hero();
-const enemy1 = new Enemy(-101, 0, 200);
-const enemy2 = new Enemy(-101, 83, 270);
-const enemy3 = new Enemy((-101 * 2.5), 83, 270);
-const enemy4 = new Enemy((-101 * 2.5), 166, 250);
-const enemy5 = new Enemy((-101 * 5), 166, 250);
+const enemy1 = new Enemy(-101, 0, 100);
+const enemy2 = new Enemy(-101, 83, 170);
+const enemy3 = new Enemy((-101 * 2.5), 83, 170);
+const enemy4 = new Enemy((-101 * 2.5), 166, 150);
+const enemy5 = new Enemy((-101 * 5), 166, 150);
 const allEnemies = [];
 allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
