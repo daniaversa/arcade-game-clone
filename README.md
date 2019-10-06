@@ -4,7 +4,7 @@ This is the third project for the **Udacity Front End Nanodegree**. It's a clone
 ## How to Run the App
 
 There are at least three options to run the game:
- - You can play it online by [clicking here](daniaversa.github.io/arcade-game/).
+ - You can play it online by [clicking here](https://daniaversa.github.io/arcade-game/).
  - Download the repository as a .zip file and open the index.html file to play.
  - You can also clone the repository via Git Bash `$ git clone https://github.com/daniaversa/arcade-game-clone` and open the index.html file.
 
