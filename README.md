@@ -15,5 +15,9 @@ There are at least three options to run the game:
  - Don't let the bugs get you, or you lose a life.
  - You have three lives, try to get as many crosses as possible to increase your highscore!
 
+## Credits
+- Matthew Cranford on [https://matthewcranford.com](https://matthewcranford.com), a great series in his blog that helped me get started. Thanks so much!
+- Font 'Press Start 2P' from [Google Fonts](https://googlefonts.com)
+
 ### Code by
 Dani Aversa (2019)
