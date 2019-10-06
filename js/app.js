@@ -58,14 +58,13 @@ Enemy.prototype.render = function() {
 class Hero {
     // Constructor
     constructor() {
-        this.sprite = 'images/char-boy.png';
+        this.sprite = 'images/char-horn-girl.png';
         this.hor = 101; // Horizontal movement distance
         this.vert = 83; // Vertical movement distance
-        this.startX = this.hor * 2;
-        this.startY = (this.vert * 4) + 60;
+        this.startX = this.hor * 2; // Starting column positioning
+        this.startY = (this.vert * 4) + 60; // Starting row positioning
         this.x = this.startX;
         this.y = this.startY;
-        this.isWinner = false;
     }
         // Methods
             // Update position
@@ -73,14 +72,14 @@ class Hero {
                 // Check collision (x and y)
                 for (let enemy of allEnemies) {
                   if (this.y === enemy.y && (enemy.x + enemy.hor/1.8 > this.x && enemy.x < this.x + this.hor/1.8)) {
-                    lives--;
-                    livesPanel.innerHTML = lives;
-                    game.classList.add('dead');
-                    setTimeout(() => game.classList.remove('dead'), 500)
-                    this.reset();
+                    lives--; // Remove 1 life
+                    livesPanel.innerHTML = lives; // Update lives panel
+                    game.classList.add('dead'); // Start animation
+                    setTimeout(() => game.classList.remove('dead'), 500) // Clear animation
+                    this.reset(); // Back to starting position
                   }
                 }
-                // Check win
+                // Check win and updates score and highscore
                 if (this.y === -23) {
                   score++;
                   scorePanel.innerHTML = score;
@@ -88,9 +87,10 @@ class Hero {
                     highScore = score;
                     highPanel.innerHTML = highScore;
                   }
+                  // Animates on successful cross and removes class after 0.5s
                   game.classList.add('win');
                   setTimeout(() => game.classList.remove('win'), 500)
-                  this.reset();
+                  this.reset(); // Back to starting position
                 }
             }
             // render
@@ -141,6 +141,8 @@ class Hero {
 
 // New hero object
 const player = new Hero();
+
+// Starts five enemy objects
 const enemy1 = new Enemy(-101, 0, 100);
 const enemy2 = new Enemy(-101, 83, 170);
 const enemy3 = new Enemy((-101 * 2.5), 83, 170);
